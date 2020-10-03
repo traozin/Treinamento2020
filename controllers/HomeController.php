@@ -3,10 +3,10 @@
 class HomeController{
 
     public function login(){
-        header("Location:/Trainee-EcompJr-2020/views/login.php");
+        header("Location:/Treinamento2020/views/login.php");
     }
 
     public function index(){
-        header("Location:/Trainee-EcompJr-2020/views/home.php");
+        header("Location:/Treinamento2020/views/home.php");
     }
 }

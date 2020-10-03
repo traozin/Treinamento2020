@@ -8,6 +8,15 @@
 
 
 <html>
+
+    <?php  
+        if($_SESSION['erroSenha']){
+            echo $_SESSION['erroSenha'];
+        }else{
+            $_SESSION['erroSenha'] = null;
+        }
+    ?>
+
     <form action="/Treinamento2020/user/store" method="post">
         <input name="name" placeholder="name">
         <input type="email" name="email" placeholder="email">
@@ -20,4 +29,5 @@
         <input type="password" name="password_confirmation">
         <button type="submit"> Cadastrar </button>        
     </form>
+
 </html>
