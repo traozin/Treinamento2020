@@ -4,10 +4,8 @@
 <html>
 
     <?php  
-        if($_SESSION['erroLogin']){
+        if($_SESSION['erroLogin'] != null){
             echo $_SESSION['erroLogin'];
-            $_SESSION['erroLogin'] = null;
-        }else{
             $_SESSION['erroLogin'] = null;
         }
     ?>

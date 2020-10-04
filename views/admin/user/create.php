@@ -10,9 +10,8 @@
 <html>
 
     <?php  
-        if($_SESSION['erroSenha']){
+        if($_SESSION['erroSenha'] =! null){
             echo $_SESSION['erroSenha'];
-        }else{
             $_SESSION['erroSenha'] = null;
         }
     ?>

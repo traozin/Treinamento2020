@@ -44,9 +44,9 @@ class User{
         $query = "select * from users";
         $result = mysqli_query($conection, $query);
         $users = [];
-        for($i=0; $i < mysqli_num_rows($result); i++){
+        for($i=0; $i < mysqli_num_rows($result); $i++){
             $user = mysqli_fetch_assoc($result);
-            $users = new User($user['id'],$user['name'],$user['email'],$user['type']);   
+            $users[$i] = new User($user['id'],$user['name'],$user['email'],$user['type']);   
         }
         return $users;
 

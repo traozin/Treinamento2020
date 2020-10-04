@@ -4,7 +4,7 @@ session_start();
 
 class UserController{
 
-    public function index(){]
+    public function index(){
         header("Location: /Treinamento2020/views/admin/user/index.php");
     }
 
@@ -23,7 +23,7 @@ class UserController{
     }
 
     public function edit($id){
-        header("Location: /Treinamento2020/views/admin/user/edit.php?id={$id[0]}")
+        header("Location: /Treinamento2020/views/admin/user/edit.php?id={$id[0]}");
     }
 
     public function profile(){
@@ -51,7 +51,7 @@ class UserController{
     }
 
     public static function verifyLogin(){
-        if($_SESSION['user'] = null){            
+        if($_SESSION['user'] == null){            
             header("Location: /Treinamento2020/views/login.php");
         }
     }
