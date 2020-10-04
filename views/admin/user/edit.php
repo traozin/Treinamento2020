@@ -7,8 +7,15 @@
     $user = UserController::get($_GET['id']);
 ?>
 
-
 <html>
+
+    <?php  
+        if($_SESSION['erroSenha'] =! null){
+            echo $_SESSION['erroSenha'];
+            $_SESSION['erroSenha'] = null;
+        }   
+    ?>
+
     <form action="/Treinamento2020/user/update/<?php echo $user->getId()?>" method="post">
         <input name="name" placeholder="name" value="<?php echo $user->getName()?>">
         <input type="email" name="email" placeholder="email" value="<?php echo $user->getEmail()?>">

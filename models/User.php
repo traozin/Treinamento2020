@@ -31,12 +31,20 @@ class User{
     }
 
     public static function get($id){
+        $conection = Connection::getConnection(); 
+        $query = "select * from users where id = {$id}";
+        $result = mysqli_query($conection, $query);
+        $user = mysqli_fetch_assoc($result);
+        $var = new User($user['id'],$user['name'],$user['email'],$user['type']); 
+        return $var; 
+        mysqli_close();
     }
 
     public static function create($name, $email, $type, $password){
         $conection = Connection::getConnection(); 
         $query = "insert into users (name, email, type, password) values ('{$name}', '{$email}', '{$type}', '{$password}')";
         $result = mysqli_query($conection, $query);
+        mysqli_close();
     }
 
     public static function all(){
@@ -49,13 +57,23 @@ class User{
             $users[$i] = new User($user['id'],$user['name'],$user['email'],$user['type']);   
         }
         return $users;
-
+        mysqli_close();
     }
 
     public static function delete($id){
+        $conection = Connection::getConnection(); 
+        $query = "delete from users where id = {$id}";
+        mysqli_query($conection, $query);
     }
 
-    public static function update($id, $name, $email, $type, $password, $password_confirmation){
+    public static function update($id, $name, $email, $type, $password){
+        $conection = Connection::getConnection(); 
+        $query = "select * from users where {$id}";
+        $result = mysqli_query($conection, $query);
+
+        $query = "update users set name = '{$name}', email = '{$email}', type = '{$type}', password = '{$password}' where id = {$id}";
+        mysqli_query($conection, $query);
+        mysqli_close();        
     }
 
     public function getId(){

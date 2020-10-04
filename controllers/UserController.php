@@ -27,12 +27,23 @@ class UserController{
     }
 
     public function profile(){
+        header("Location: /Treinamento2020/views/admin/user/profile.php");
     }
 
     public function update($id){
+        if($_POST['password'] != $_POST['password_confirmation']){
+            $_SESSION['erroSenha'] = "Suas senhas não batem";
+            header("Location: /Treinamento2020/views/admin/user/edit.php?id={$id[0]}");
+        }else{
+            User::update($id[0], $_POST['name'], $_POST['email'], $_POST['type'], $_POST['password']);           
+            header("Location: /Treinamento2020/views/admin/user/index.php");
+        }
+        
     }
 
     public function delete($id){
+        User::delete($id[0]);
+        header("Location: /Treinamento2020/views/admin/user/index.php");
     }
 
     public static function all(){
@@ -57,6 +68,10 @@ class UserController{
     }
     
     public static function verifyAdmin(){
+        $user = $_SESSION['user'];    
+        if($user->getType() != "admin"){            
+            header("Location: /Treinamento2020/views/admin/dashboard.php");
+        }
     }
 
     public static function logout(){
@@ -65,5 +80,6 @@ class UserController{
     }
 
     public static function get($id){
+        return User::get($id);
     }
 }
